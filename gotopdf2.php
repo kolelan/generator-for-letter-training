@@ -1,39 +1,55 @@
 <?php
 require_once('gridphp.php');
 
-$pdf=new PDF_Grid();
-	
-	/*
-	//ÃáâÐÝÐÒÛØÒÐÕÜ ÞáÝÞÒÝëÕ ÝÐáâàÞÙÚØ ßàÞßØáØ
-	*/
-	
-	$pdf->inclined = true;		//²ÚÛîçÐÕÜ ÝÐÚÛÞÝÝãî ÛØÝØî
-	$pdf->SetMargins(5,5,25);	//ÃáâÐÝÐÒÛØÒÐÕÜ Þâáâãßë
-	$pdf->grid = 18;			//ãáâÐÝÐÒÛØÒÐÕÜ çÕàÕ× ÚÐÚÞÕ àÐááâÞïÝØÕ ÝØÖÝïï ÛØÝÕÙÚÐ ÑãÔÕâ ßÞÒâÞàïâìáï
-	$pdf->AddPage();
-	
-	
-	/*
-	//ÃáâÐÝÐÒÛØÒÐÕÜ ÝÐáâàÞÙÚØ ÝÐçÕàâÐÝØï ÑãÚÒ(ÝÐáâàÐØÒÐÕÜ èàØäâë)
-	*/
+$pdf = new PDF_Grid();
 
-	switch ($_POST['type_letter_propisi']) {
-    case 0:		//áÕàÞÕ ÝÐçÕàâÐÝØÕ												
-		$pdf->AddFont('LearningCurve-Bold','','learning_curve_bold_ot_tt.php');
-		$pdf->SetFont('LearningCurve-Bold','',36);
-		$pdf->SetTextColor(140,140,140);
-		break;
-	case 1:		//ßãÝÚâØàÝÞÕ ÝÐçÕàâÐÝØÕ														
-		$pdf->AddFont('LearningCurve-dashed','','learning_curve_dashed_ot_tt.php');
-		$pdf->SetFont('LearningCurve-dashed','',36);
-		$pdf->SetTextColor(0,0,0);
-		break;
-	default:
-		$pdf->Write(18,"Ãßá, ÞèØÑÚÐ ßàØ ÒëÑÞàÕ ÝÐçÕàâÐÝØÙ ÑãÚÒ");
-		break;
-	}
-	$text_propisi = mb_convert_encoding($_POST['data1'], "cp1252");
-	$pdf->Write(18,"$text_propisi");		//²ëÒÞÔ âÕÚáâÐ Ò ÒØÔÕ ßàÞßØáØ
+/*
+//Ð£ÑÑ‚Ð°Ð½Ð°Ð²Ð»Ð¸Ð²Ð°ÐµÐ¼ Ð¾ÑÐ½Ð¾Ð²Ð½Ñ‹Ðµ Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ Ð¿Ñ€Ð¾Ð¿Ð¸ÑÐ¸
+*/
+//[true|false]Ð’ÐºÐ»ÑŽÑ‡Ð°ÐµÐ¼ Ð½Ð°ÐºÐ»Ð¾Ð½Ð½ÑƒÑŽ Ð»Ð¸Ð½Ð¸ÑŽ
+if (isset($_POST['inclined_line']) &&
+    $_POST['inclined_line'] == 'Yes') {
+    $pdf->inclined = true;
+} else {
+    $pdf->inclined = false;
+}
+if (isset($_POST['border_line']) &&
+    $_POST['border_line'] == 'Yes') {
+    $pdf->border = true;
+} else {
+    $pdf->border = false;
+}
+
+$left = $_POST['margin_left'] ?? 5;
+$top = $_POST['margin_top'] ?? 5;
+$right = $_POST['margin_right'] ?? 5;
+
+$pdf->SetMargins($left, $top, $right);    //Ð£ÑÑ‚Ð°Ð½Ð°Ð²Ð»Ð¸Ð²Ð°ÐµÐ¼ Ð¾Ñ‚ÑÑ‚ÑƒÐ¿Ñ‹
+$pdf->grid = 18;            //ÑƒÑÑ‚Ð°Ð½Ð°Ð²Ð»Ð¸Ð²Ð°ÐµÐ¼ Ñ‡ÐµÑ€ÐµÐ· ÐºÐ°ÐºÐ¾Ðµ Ñ€Ð°ÑÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð½Ð¸Ð¶Ð½ÑÑ Ð»Ð¸Ð½ÐµÐ¹ÐºÐ° Ð±ÑƒÐ´ÐµÑ‚ Ð¿Ð¾Ð²Ñ‚Ð¾Ñ€ÑÑ‚ÑŒÑÑ
+$pdf->AddPage();
+
+
+/*
+//Ð£ÑÑ‚Ð°Ð½Ð°Ð²Ð»Ð¸Ð²Ð°ÐµÐ¼ Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¹ÐºÐ¸ Ð½Ð°Ñ‡ÐµÑ€Ñ‚Ð°Ð½Ð¸Ñ Ð±ÑƒÐºÐ²(Ð½Ð°ÑÑ‚Ñ€Ð°Ð¸Ð²Ð°ÐµÐ¼ ÑˆÑ€Ð¸Ñ„Ñ‚Ñ‹)
+*/
+
+switch ($_POST['type_letter_propisi']) {
+    case 0:        //ÑÐµÑ€Ð¾Ðµ Ð½Ð°Ñ‡ÐµÑ€Ñ‚Ð°Ð½Ð¸Ðµ
+        $pdf->AddFont('LearningCurve-Bold', '', 'learning_curve_bold_ot_tt.php');
+        $pdf->SetFont('LearningCurve-Bold', '', 36);
+        $pdf->SetTextColor(140, 140, 140);
+        break;
+    case 1:        //Ð¿ÑƒÐ½ÐºÑ‚Ð¸Ñ€Ð½Ð¾Ðµ Ð½Ð°Ñ‡ÐµÑ€Ñ‚Ð°Ð½Ð¸Ðµ
+        $pdf->AddFont('LearningCurve-dashed', '', 'learning_curve_dashed_ot_tt.php');
+        $pdf->SetFont('LearningCurve-dashed', '', 36);
+        $pdf->SetTextColor(0, 0, 0);
+        break;
+    default:
+        $pdf->Write(18, "Ð£Ð¿Ñ, Ð¾ÑˆÐ¸Ð±ÐºÐ° Ð¿Ñ€Ð¸ Ð²Ñ‹Ð±Ð¾Ñ€Ðµ Ð½Ð°Ñ‡ÐµÑ€Ñ‚Ð°Ð½Ð¸Ð¹ Ð±ÑƒÐºÐ²");
+        break;
+}
+$text_propisi = mb_convert_encoding($_POST['data1'], "cp1252");
+$pdf->Write(18, "$text_propisi");        //Ð’Ñ‹Ð²Ð¾Ð´ Ñ‚ÐµÐºÑÑ‚Ð° Ð² Ð²Ð¸Ð´Ðµ Ð¿Ñ€Ð¾Ð¿Ð¸ÑÐ¸
 
 
 $pdf->Output();
