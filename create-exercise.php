@@ -20,6 +20,7 @@
         <p>
             наклонная черта <input type="checkbox" name="inclined_line" checked="checked" value="Yes">
             поля <input type="checkbox" name="border_line" checked="checked" value="Yes">
+            нотный стан <input type="checkbox" name="stave" checked="checked" value="Yes">
         </p>
     <h3>Отступы линий</h3>
         <p>

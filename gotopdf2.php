@@ -19,6 +19,12 @@ if (isset($_POST['border_line']) &&
 } else {
     $pdf->border = false;
 }
+if (isset($_POST['stave']) &&
+    $_POST['stave'] == 'Yes') {
+    $pdf->stave = true;
+} else {
+    $pdf->stave = false;
+}
 
 $left = $_POST['margin_left'] ?? 5;
 $top = $_POST['margin_top'] ?? 5;
