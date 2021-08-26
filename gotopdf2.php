@@ -7,6 +7,12 @@ $pdf = new PDF_Grid();
 //Устанавливаем основные настройки прописи
 */
 //[true|false]Включаем наклонную линию
+if (isset($_POST['lines']) &&
+    $_POST['lines'] == 'Yes') {
+    $pdf->lines = true;
+} else {
+    $pdf->lines = false;
+}
 if (isset($_POST['inclined_line']) &&
     $_POST['inclined_line'] == 'Yes') {
     $pdf->inclined = true;

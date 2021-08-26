@@ -18,6 +18,7 @@
         </p>
     <h3>Оформление страницы</h3>
         <p>
+            линии <input type="checkbox" name="lines" checked="checked" value="Yes">
             наклонная черта <input type="checkbox" name="inclined_line" checked="checked" value="Yes">
             поля <input type="checkbox" name="border_line" checked="checked" value="Yes">
             нотный стан <input type="checkbox" name="stave" checked="checked" value="Yes">
