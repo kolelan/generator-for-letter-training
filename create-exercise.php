@@ -19,7 +19,9 @@
     <h3>Оформление страницы</h3>
         <p>
             линии <input type="checkbox" name="lines" checked="checked" value="Yes">
-            наклонная черта <input type="checkbox" name="inclined_line" checked="checked" value="Yes">
+            сверху <input type="checkbox" name="line_up" checked="checked" value="Yes">
+            снизу <input type="checkbox" name="line_down" checked="checked" value="Yes">
+            наклонная <input type="checkbox" name="inclined_line" checked="checked" value="Yes">
             поля <input type="checkbox" name="border_line" checked="checked" value="Yes">
             нотный стан <input type="checkbox" name="stave" checked="checked" value="Yes">
         </p>
@@ -41,8 +43,27 @@
                 <option value="20">20px</option>
                 <option value="25">25px</option>
             </select>
+            сверху <select name="margin_top">
+                <option value="1">1px</option>
+                <option value="2">2px</option>
+                <option value="3">3px</option>
+                <option value="4">4px</option>
+                <option value="5" selected="selected">5px</option>
+            </select>
         </p>
-    <h3>Место для прописи:</h3>
+      <p>
+          Смещение текст-ноты
+          <select name="offset_t_n">
+              <option value="1">-3</option>
+              <option value="2">-2</option>
+              <option value="3">-1</option>
+              <option value="4" selected="selected">Центр</option>
+              <option value="5">1</option>
+              <option value="6">2</option>
+              <option value="7">3</option>
+          </select>
+      </p>
+    <h3>Текст, который мы превратим в пропись:</h3>
 	<textarea name="data1"rows="10">
     </textarea>
     <input type="submit" value="Создать пропись">

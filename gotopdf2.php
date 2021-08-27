@@ -13,6 +13,18 @@ if (isset($_POST['lines']) &&
 } else {
     $pdf->lines = false;
 }
+if (isset($_POST['line_up']) &&
+    $_POST['line_up'] == 'Yes') {
+    $pdf->line_up = true;
+} else {
+    $pdf->line_up = false;
+}
+if (isset($_POST['line_down']) &&
+    $_POST['line_down'] == 'Yes') {
+    $pdf->line_down = true;
+} else {
+    $pdf->line_down = false;
+}
 if (isset($_POST['inclined_line']) &&
     $_POST['inclined_line'] == 'Yes') {
     $pdf->inclined = true;
@@ -32,12 +44,14 @@ if (isset($_POST['stave']) &&
     $pdf->stave = false;
 }
 
-$left = $_POST['margin_left'] ?? 5;
-$top = $_POST['margin_top'] ?? 5;
-$right = $_POST['margin_right'] ?? 5;
+$left = (int) $_POST['margin_left'] ?? 5;
+$top = (int) $_POST['margin_top'] ?? 5;
+$right = (int) $_POST['margin_right'] ?? 5;
+$offset_t_n = (int) $_POST['offset_t_n'] ?? 4;
 
 $pdf->SetMargins($left, $top, $right);    //Устанавливаем отступы
 $pdf->grid = 18;            //устанавливаем через какое расстояние нижняя линейка будет повторяться
+$pdf->offset_t_n = $offset_t_n;            //устанавливаем через какое расстояние нижняя линейка будет повторяться
 $pdf->AddPage();
 
 
