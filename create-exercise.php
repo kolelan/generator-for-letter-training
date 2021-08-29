@@ -52,15 +52,34 @@
             </select>
         </p>
       <p>
+          Высота грида
+          <select name="grid">
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18" selected="selected">Стандартная (18)</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+              <option value="24">24</option>
+              <option value="25">25</option>
+          </select>
           Смещение текст-ноты
           <select name="offset_t_n">
               <option value="1">-3</option>
               <option value="2">-2</option>
               <option value="3">-1</option>
               <option value="4" selected="selected">Центр</option>
-              <option value="5">1</option>
-              <option value="6">2</option>
-              <option value="7">3</option>
+              <option value="5">+1</option>
+              <option value="6">+2</option>
+              <option value="7">+3</option>
           </select>
       </p>
     <h3>Текст, который мы превратим в пропись:</h3>

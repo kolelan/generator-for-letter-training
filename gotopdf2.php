@@ -44,13 +44,14 @@ if (isset($_POST['stave']) &&
     $pdf->stave = false;
 }
 
-$left = (int) $_POST['margin_left'] ?? 5;
-$top = (int) $_POST['margin_top'] ?? 5;
-$right = (int) $_POST['margin_right'] ?? 5;
-$offset_t_n = (int) $_POST['offset_t_n'] ?? 4;
+$left = (int)$_POST['margin_left'] ?? 5;
+$top = (int)$_POST['margin_top'] ?? 5;
+$right = (int)$_POST['margin_right'] ?? 5;
+$offset_t_n = (int)$_POST['offset_t_n'] ?? 4;
 
 $pdf->SetMargins($left, $top, $right);    //Устанавливаем отступы
-$pdf->grid = 18;            //устанавливаем через какое расстояние нижняя линейка будет повторяться
+$spacing = $_POST['grid'] ?? 18;
+$pdf->grid = $spacing;            //устанавливаем через какое расстояние нижняя линейка будет повторяться
 $pdf->offset_t_n = $offset_t_n;            //устанавливаем через какое расстояние нижняя линейка будет повторяться
 $pdf->AddPage();
 
@@ -75,7 +76,7 @@ switch ($_POST['type_letter_propisi']) {
         break;
 }
 $text_propisi = mb_convert_encoding($_POST['data1'], "cp1252");
-$pdf->Write(18, "$text_propisi");        //Вывод текста в виде прописи
+$pdf->Write($spacing, "$text_propisi");        //Вывод текста в виде прописи
 
 
 $pdf->Output();

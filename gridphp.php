@@ -39,7 +39,8 @@ class PDF_Grid extends FPDF
         if ($this->stave) {
             $this->SetDrawColor(50, 50, 150);
             $this->SetLineWidth(0.15);
-            for ($a = $this->offset_t_n; $a < $this->h - 20; $a += 18) {
+
+            for ($a = $this->offset_t_n; $a < $this->h - 20; $a += $spacing ) {
                 for ($i = $a; $i < $a + 7.5; $i += 1.5) {                        //print up_ horizontal lines 13.5
                     $this->Line(0, $i, $this->w, $i);
                 }
