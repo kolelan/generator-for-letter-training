@@ -4,8 +4,9 @@
   "description": "Фронтенд часть проекта \"От руки\"",
   "main": "index.js",
   "scripts": {
-    "dev": "node node_modules/webpack/bin/webpack.js --mode development",
-    "prod": "node node_modules/webpack/bin/webpack.js --mode production"
+    "dev": "cross-env NODE_ENV=development webpack --mode development",
+    "prod": "node node_modules/webpack/bin/webpack.js --mode production",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --open"
   },
   "keywords": [
     "прописи",
@@ -16,8 +17,12 @@
   "license": "ISC",
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.3.0",
     "html-webpack-plugin": "^5.3.2",
+    "style-loader": "^3.3.0",
     "webpack": "^5.54.0",
-    "webpack-cli": "^4.8.0"
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.3.1"
   }
 }
