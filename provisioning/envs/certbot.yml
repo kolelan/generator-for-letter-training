@@ -1,0 +1,4 @@
+certbot_email: kolelan@yandex.ru
+certbot_hosts:
+    - xn--h1adlijh.xn--p1ai
+#    - api.xn--h1adlijh.xn--p1ai

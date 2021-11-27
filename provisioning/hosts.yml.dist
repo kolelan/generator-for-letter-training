@@ -3,7 +3,5 @@ all:
         server:
             ansible_connection: ssh
             ansible_user: root
-            ansible_host: 89.108.79.111
+            ansible_host: 0.0.0.0
             ansible_port: 22
-
-
