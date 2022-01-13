@@ -1,7 +1,7 @@
 # Добавим ssh ключ из нашей системы на сервер
 add:
-	ssh-copy-id root@89.108.79.111
+	ssh-copy-id root@194.58.97.60
 
 ssh:
-	ssh root@89.108.79.111
+	ssh root@194.58.97.60
 
